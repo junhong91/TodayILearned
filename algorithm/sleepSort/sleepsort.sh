@@ -12,3 +12,4 @@ do
 done
 
 # example usage: ./sleepsort.sh 5 3 6 3 7 4 1 3 7
+# https://coderscat.com/3-most-slow-sorting-algorithms/
