@@ -21,7 +21,7 @@
     reason: string;
   };
   type LoginState = SuccessState | FailState;
-  function login(): Promise<LoginState> {
+  function login(id: string, password: string): Promise<LoginState> {
     return new Promise((resolve, reject) => {
       resolve({ response: { body: "Success!" } });
     });
