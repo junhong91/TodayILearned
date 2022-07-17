@@ -3,6 +3,7 @@
     shots: number;
     hasMilk: boolean;
   };
+
   class CoffeeMaker {
     static BEANS_GRAMM_PER_SHOT: number = 7; // static level
     coffeeBeans: number; // instance (object) level
