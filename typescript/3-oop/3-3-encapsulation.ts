@@ -45,4 +45,25 @@
 
   const coffeeCup: CoffeeCup = coffeeMaker.makeCoffee(2);
   console.log(coffeeCup);
+
+  class User {
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`;
+    }
+    private internalAge = 4;
+    get age(): number {
+      return this.internalAge;
+    }
+    set age(num: number) {
+      if (num < 0) {
+        throw new Error("value for age should be greater than 0");
+      }
+      this.internalAge = num;
+    }
+    constructor(private firstName: string, private lastName: string) {}
+  }
+
+  const user = new User("junhong", "LEE");
+  user.age = 6; // setter called
+  console.log(user.fullName);
 }
