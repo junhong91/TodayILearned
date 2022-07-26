@@ -9,13 +9,15 @@
     makeCoffee(shots: number): CoffeeCup;
   }
 
-  interface CommercialCoffeeMaker {
-    makeCoffee(shots: number): CoffeeCup;
-    fillCoffeeBeans(beans: number): void;
-    clean(): void;
+  interface MilkFrother {
+    makeMilk(cup: CoffeeCup): CoffeeCup;
   }
 
-  class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
+  interface SugarProvider {
+    addSugar(cup: CoffeeCup): CoffeeCup;
+  }
+
+  class CoffeeMachine implements CoffeeMaker {
     private static BEANS_GRAMM_PER_SHOT: number = 7; // static level
     private coffeeBeans: number; // instance (object) level
 
@@ -66,7 +68,7 @@
   }
 
   // 싸구려 우유 거품기
-  class CheapMilkSteamer {
+  class CheapMilkSteamer implements MilkFrother {
     private steamMilk(): void {
       console.log("Steaming some milk...");
     }
@@ -81,7 +83,7 @@
   }
 
   // 설탕 제조기
-  class AutomaticSugarMixer {
+  class AutomaticSugarMixer implements SugarProvider {
     private getSugar(): boolean {
       console.log("Getting some sugar from jar...");
       return true;
@@ -98,7 +100,7 @@
 
   class CaffeLatteMachine extends CoffeeMachine {
     // Dependency injection: CheapMilkSteamer
-    constructor(private beans: number, private milkFrother: CheapMilkSteamer) {
+    constructor(private beans: number, private milkFrother: MilkFrother) {
       super(beans);
     }
     makeCoffee(shots: number): CoffeeCup {
@@ -110,7 +112,7 @@
   class SweetCoffeeMaker extends CoffeeMachine {
     constructor(
       private beans: number,
-      private sugarMixer: AutomaticSugarMixer
+      private sugarMixer: SugarProvider
     ) {
       super(beans);
     }
@@ -141,10 +143,12 @@
     }
   }
 
+  const milkFrother: MilkFrother = new CheapMilkSteamer();
+  const sugarProvider: SugarProvider = new AutomaticSugarMixer();
   const machines: CoffeeMachine[] = [
     new CoffeeMachine(16),
-    new CaffeLatteMachine(16),
-    new SweetCoffeeMaker(16),
+    new CaffeLatteMachine(16, milkFrother),
+    new SweetCoffeeMaker(16, sugarProvider),
   ];
   // Polymorphism
   machines.forEach((machine) => {
