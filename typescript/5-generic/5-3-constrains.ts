@@ -42,3 +42,15 @@ bob.workPartTime();
 
 const junhongAfterPay = pay(junhong);
 junhongAfterPay.workFullTime();
+
+const obj = {
+  name: "ellie",
+  age: 20,
+};
+
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+console.log(getValue(obj, "name")); // ellie
+console.log(getValue(obj, "age")); // 20
