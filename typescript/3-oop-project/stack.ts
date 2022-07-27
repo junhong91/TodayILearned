@@ -42,7 +42,7 @@ class StackImpl implements Stack {
     }
 }
 
-const stack = new StackImpl();
+const stack = new StackImpl(12);
 stack.push("hello 1");
 stack.push("world 2");
 while (stack.size !== 0) {
