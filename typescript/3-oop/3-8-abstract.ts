@@ -41,7 +41,7 @@
     }
 
     protected abstract extract(shots: number): CoffeeCup;
-       
+
     makeCoffee(shots: number): CoffeeCup {
       this.grindBeans(shots);
       this.preheat();
@@ -53,16 +53,16 @@
     private steamMilk(): void {
       console.log("Steaming some milk...");
     }
-      
+
     protected extract(shots: number): CoffeeCup {
-        this.steamMilk();
-        return { shots, hasMilk: true };
+      this.steamMilk();
+      return { shots, hasMilk: true };
     }
   }
 
   class SweetCoffeeMaker extends CoffeeMachine {
     protected extract(shots: number): CoffeeCup {
-        return {
+      return {
         shots,
         hasSugar: true,
       };

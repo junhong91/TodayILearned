@@ -110,10 +110,7 @@
   }
 
   class SweetCoffeeMaker extends CoffeeMachine {
-    constructor(
-      private beans: number,
-      private sugarMixer: SugarProvider
-    ) {
+    constructor(private beans: number, private sugarMixer: SugarProvider) {
       super(beans);
     }
 
