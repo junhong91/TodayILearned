@@ -44,7 +44,6 @@ interface PositionInterface {
 
 // Type은 merge 불가능!
 // type PositionType {
-
 // }
 
 // Type aliases can use computed properties
